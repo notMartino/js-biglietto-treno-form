@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>TrenItalia</title>
+    <link rel="stylesheet" href="css/style.css">
+
+  </head>
+  <body>
+
+    <script type="text/javascript">
+      var km = parseInt(prompt('Quanti KM devi percorrere?'));
+      if (km < 0) {
+        km = -(km);
+      }
+      console.log('Distanza da percorrere: ' + km +'km');
+
+
+      var anni = parseInt(prompt('Quanti anni hai?'));
+      if (anni < 0) {
+        anni = -(anni);
+      }
+      console.log('Età del passeggero: ' + anni);
+
+      var prezzoBiglietto = km * 0.21;
+
+      function sconto20(){
+        prezzoBiglietto = (prezzoBiglietto / 100) * 80;
+        return prezzoBiglietto;
+      }
+      function sconto40(){
+        prezzoBiglietto  = (prezzoBiglietto / 100) * 60;
+        return prezzoBiglietto;
+      }
+
+      document.writeln('<h2 id="km"></h2>');
+      document.writeln('<h2 id="eta"></h2>');
+      document.writeln('<h2 id="prezzo2"></h2>');
+      document.getElementById('prezzo2').innerHTML = 'Prezzo pieno biglietto: ' + prezzoBiglietto.toFixed(2) + ' €';
+      document.getElementById('eta').innerHTML = 'Età del passeggero: ' + anni + ' anni';
+      document.getElementById('km').innerHTML = 'Distanza da percorrere: ' + km + ' km';
+
+      if (anni >= 0 && anni < 18) {
+        console.log('Prezzo pieno biglietto: ' + prezzoBiglietto.toFixed(2) + ' €');
+        console.log('Sei minorenne, hai diritto ha uno sconto del 20%!');
+        prezzoBiglietto = sconto20().toFixed(2);
+        console.log('Prezzo biglietto scontato: ' + prezzoBiglietto + ' €');
+        document.writeln('<h2 id="prezzo"></h2>');
+        document.getElementById('prezzo').innerHTML = 'Prezzo scontato del 20% (minorenne): ' + prezzoBiglietto + ' €';
+      } else if (anni > 65) {
+        console.log('Prezzo pieno biglietto: ' + prezzoBiglietto.toFixed(2) + ' €');
+        console.log('Sei over 65, hai diritto ha uno sconto del 40%!');
+        prezzoBiglietto = sconto40().toFixed(2);
+        console.log('Prezzo biglietto scontato: ' + prezzoBiglietto + ' €');
+        document.writeln('<h2 id="prezzo"></h2>');
+        document.getElementById('prezzo').innerHTML = 'Prezzo scontato del 40% (over 65): ' + prezzoBiglietto + ' €';
+      }else {
+        console.log('Prezzo pieno biglietto: ' + prezzoBiglietto.toFixed(2) + ' €');
+        console.log('Non hai diritto a nessuno sconto!');
+      }
+    </script>
+  </body>
+</html>
